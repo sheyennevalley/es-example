@@ -61,7 +61,7 @@ public class ContractController {
 
     @RequestMapping(value = "/api/contracts/{id}", method = GET)
     @ResponseBody
-    private Contract findOnd(@PathVariable String id){
+    private Contract findOne(@PathVariable String id){
         return contractRepository.findOne(id);
     }
 

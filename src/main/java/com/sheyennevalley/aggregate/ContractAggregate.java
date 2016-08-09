@@ -58,29 +58,38 @@ public class ContractAggregate extends AbstractAnnotatedAggregateRoot<String> {
     @EventSourcingHandler
     public void on(ContractCreatedEvent event){
         this.id = event.getContractId();
+        this.addendums = event.getAddendums();
+        this.terms = event.getTerms();
+        this.status = event.getStatus();
+        this.offer = event.getOffer();
+        this.promisee = event.getPromisee();
+        this.promisor = event.getPromisor();
     }
 
     @EventSourcingHandler
     public void on(AddendumAddedEvent event){
         this.id = event.getContractId();
+        this.addendums.add(event.getAddendum());
 
     }
 
     @EventSourcingHandler
     public void on(OfferChangedEvent event){
         this.id = event.getContractId();
+        this.offer = event.getOffer();
 
     }
 
     @EventSourcingHandler
     public void on(StatusChangedEvent event){
         this.id = event.getContractId();
-
+        this.status = event.getStatus();
     }
 
     @EventSourcingHandler
     public void on(TermsChangedEvent event){
         this.id = event.getContractId();
+        this.terms = event.getTerms();
 
     }
 }
